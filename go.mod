@@ -11,11 +11,12 @@ require (
 	github.com/orcaman/concurrent-map v1.0.0
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.12.2
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.7.5
 	github.com/twmb/franz-go v1.6.0
 	github.com/twmb/franz-go/pkg/kmsg v1.1.0
 	github.com/twmb/franz-go/pkg/sasl/kerberos v1.0.0
 	go.uber.org/atomic v1.9.0
+	go.uber.org/automaxprocs v1.5.1
 	go.uber.org/zap v1.21.0
 	golang.org/x/sync v0.0.0-20220601150217-0de741cfad7f
 )
