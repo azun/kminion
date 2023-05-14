@@ -30,9 +30,8 @@ RUN CGO_ENABLED=0 go build \
 FROM alpine:3.17
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /app/bin/kminion /app/kminion
-RUN addgroup -S redpanda \
-    && adduser -S redpanda -G redpanda \
-    && chmod o+rx /app/kminion
-USER redpanda
+RUN chown -R 1001:0 /app/kminion \
+    && chmod -R g=u /app/kminion
+USER 1001
 
 ENTRYPOINT ["/app/kminion"]
