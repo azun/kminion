@@ -157,6 +157,7 @@ func (s *Service) initKafka(ctx context.Context) error {
 
 func (s *Service) initReconcile(ctx context.Context) error {
 	s.logger.Info("Starting reconcile")
+	// Create the KafkaAdmin client used for topic partition and leader reconciliation
 	adminClient, err := s.kafkaSvc.CreateAndTestClient(ctx, s.logger, []kgo.Opt{})
 	if err != nil {
 		return fmt.Errorf("failed to create kafka client for e2e: %w", err)
@@ -169,7 +170,7 @@ func (s *Service) initReconcile(ctx context.Context) error {
 		return fmt.Errorf("could not validate end-to-end topic: %w", err)
 	}
 
-	// finally start everything else (producing, consuming, continuous validation, consumer group tracking)
+	// start topic creation/partition/leader reconciliation loop
 	go s.startReconciliation(ctx)
 
 	return nil
